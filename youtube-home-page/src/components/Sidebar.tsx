@@ -4,12 +4,23 @@ import {
   ChevronUp,
   Clapperboard,
   Clock,
+  Film,
+  Flame,
+  Gamepad2,
   History,
   Home,
   Library,
+  Lightbulb,
   ListVideo,
+  Music2,
+  Newspaper,
   PlaySquare,
+  Podcast,
+  Radio,
   Repeat,
+  Shirt,
+  ShoppingBag,
+  Trophy,
 } from 'lucide-react';
 import { Children, ElementType, ReactNode, useState } from 'react';
 import { playlists, subscriptions } from '../data/sidebar';
@@ -57,6 +68,19 @@ const Sidebar = () => {
           ))}
         </LargeSidebarSection>
         <hr />
+        <LargeSidebarSection title="Explore">
+          <LargeSidebarItem IconOrImageUrl={Flame} title="Trending" url="/trending" />
+          <LargeSidebarItem IconOrImageUrl={ShoppingBag} title="Shopping" url="/shopping" />
+          <LargeSidebarItem IconOrImageUrl={Music2} title="Music" url="/music" />
+          <LargeSidebarItem IconOrImageUrl={Film} title="Movies & TV" url="/movies-tv" />
+          <LargeSidebarItem IconOrImageUrl={Radio} title="Live" url="/live" />
+          <LargeSidebarItem IconOrImageUrl={Gamepad2} title="Gaming" url="/gaming" />
+          <LargeSidebarItem IconOrImageUrl={Newspaper} title="News" url="/news" />
+          <LargeSidebarItem IconOrImageUrl={Trophy} title="Sports" url="/sports" />
+          <LargeSidebarItem IconOrImageUrl={Lightbulb} title="Learning" url="/learning" />
+          <LargeSidebarItem IconOrImageUrl={Shirt} title="Fashion & Beauty" url="/fashion-beauty" />
+          <LargeSidebarItem IconOrImageUrl={Podcast} title="Podcasts" url="/podcasts" />
+        </LargeSidebarSection>
       </aside>
     </>
   );
