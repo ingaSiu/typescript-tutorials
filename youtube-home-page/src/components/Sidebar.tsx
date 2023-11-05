@@ -12,8 +12,8 @@ import {
   Repeat,
 } from 'lucide-react';
 import { Children, ElementType, ReactNode, useState } from 'react';
+import { playlists, subscriptions } from '../data/sidebar';
 
-import { playlists } from '../data/sidebar';
 import { twMerge } from 'tailwind-merge';
 
 const Sidebar = () => {
@@ -27,21 +27,32 @@ const Sidebar = () => {
       </aside>
       <aside className="w-56 lg:sticky absolute top-0 overflow-y-auto scrollbar-hidden pb-4 flex-col gap-2 px-2 flex">
         <LargeSidebarSection>
-          <LargeSidebarItem isActive Icon={Home} title="Home" url="/" />
-          <LargeSidebarItem Icon={Clapperboard} title="Subscriptions" url="/subscriptions" />
+          <LargeSidebarItem isActive IconOrImageUrl={Home} title="Home" url="/" />
+          <LargeSidebarItem IconOrImageUrl={Clapperboard} title="Subscriptions" url="/subscriptions" />
         </LargeSidebarSection>
         <hr />
         <LargeSidebarSection visibleItemCount={5}>
-          <LargeSidebarItem Icon={Library} title="Library" url="/library" />
-          <LargeSidebarItem Icon={History} title="History" url="/history" />
-          <LargeSidebarItem Icon={PlaySquare} title="Your Videos" url="/your-videos" />
-          <LargeSidebarItem Icon={Clock} title="Watch Later" url="/playlist?list=WL" />
+          <LargeSidebarItem IconOrImageUrl={Library} title="Library" url="/library" />
+          <LargeSidebarItem IconOrImageUrl={History} title="History" url="/history" />
+          <LargeSidebarItem IconOrImageUrl={PlaySquare} title="Your Videos" url="/your-videos" />
+          <LargeSidebarItem IconOrImageUrl={Clock} title="Watch Later" url="/playlist?list=WL" />
           {playlists.map((playlist) => (
             <LargeSidebarItem
               key={playlist.id}
-              Icon={ListVideo}
+              IconOrImageUrl={ListVideo}
               title={playlist.name}
               url={`/playlist?list=WL${playlist.id}`}
+            />
+          ))}
+        </LargeSidebarSection>
+        <hr />
+        <LargeSidebarSection title="Subscriptions">
+          {subscriptions.map((subscription) => (
+            <LargeSidebarItem
+              key={subscription.id}
+              IconOrImageUrl={subscription.imgUrl}
+              title={subscription.channelName}
+              url={`/@${subscription.id}`}
             />
           ))}
         </LargeSidebarSection>
@@ -107,13 +118,13 @@ const LargeSidebarSection = ({
 };
 
 type LargeSidebarItemProps = {
-  Icon: ElementType;
+  IconOrImageUrl: ElementType | string;
   title: string;
   url: string;
   isActive?: boolean;
 };
 
-const LargeSidebarItem = ({ Icon, title, url, isActive = false }: LargeSidebarItemProps) => {
+const LargeSidebarItem = ({ IconOrImageUrl, title, url, isActive = false }: LargeSidebarItemProps) => {
   return (
     <a
       href={url}
@@ -124,7 +135,12 @@ const LargeSidebarItem = ({ Icon, title, url, isActive = false }: LargeSidebarIt
         }`,
       )}
     >
-      <Icon className="w-6 h-6" />
+      {typeof IconOrImageUrl === 'string' ? (
+        <img src={IconOrImageUrl} className="w-6 h-6 rounded-full" />
+      ) : (
+        <IconOrImageUrl className="w-6 h-6" />
+      )}
+
       <div className="whitespace-nowrap overflow-hidden text-ellipsis">{title}</div>
     </a>
   );
