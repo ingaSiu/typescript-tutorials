@@ -26,17 +26,28 @@ import { Children, ElementType, ReactNode, useState } from 'react';
 import { playlists, subscriptions } from '../data/sidebar';
 
 import { twMerge } from 'tailwind-merge';
+import { useSidebarContext } from '../contexts/SidebarContext';
 
 const Sidebar = () => {
+  const { isLargeOpen, isSmallOpen } = useSidebarContext();
+
   return (
     <>
-      <aside className="sticky top-0 overflow-y-auto scrollball-hidden pb-4 flex flex-col ml-1 lg:hidden">
+      <aside
+        className={`sticky top-0 overflow-y-auto scrollball-hidden pb-4 flex flex-col ml-1 lg:hidden ${
+          isLargeOpen ? 'lg:hidden' : 'lg:flex'
+        }`}
+      >
         <SmallSidebarItem Icon={Home} title="Home" url="/" />
         <SmallSidebarItem Icon={Repeat} title="Shorts" url="/shorts" />
         <SmallSidebarItem Icon={Clapperboard} title="Subscriptions" url="/subscriptions" />
         <SmallSidebarItem Icon={Library} title="Library" url="/library" />
       </aside>
-      <aside className="w-56 lg:sticky absolute top-0 overflow-y-auto scrollbar-hidden pb-4 flex-col gap-2 px-2 lg:flex hidden">
+      <aside
+        className={`w-56 lg:sticky absolute top-0 overflow-y-auto scrollbar-hidden pb-4 flex-col gap-2 px-2 ${
+          isLargeOpen ? 'lg:flex' : 'lg:hidden'
+        } ${isSmallOpen ? 'flex z-[999] bg-white max-h-screen ' : 'hidden'} `}
+      >
         <LargeSidebarSection>
           <LargeSidebarItem isActive IconOrImageUrl={Home} title="Home" url="/" />
           <LargeSidebarItem IconOrImageUrl={Clapperboard} title="Subscriptions" url="/subscriptions" />
