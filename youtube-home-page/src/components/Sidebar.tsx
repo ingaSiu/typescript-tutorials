@@ -36,7 +36,7 @@ const Sidebar = () => {
         <SmallSidebarItem Icon={Clapperboard} title="Subscriptions" url="/subscriptions" />
         <SmallSidebarItem Icon={Library} title="Library" url="/library" />
       </aside>
-      <aside className="w-56 lg:sticky absolute top-0 overflow-y-auto scrollbar-hidden pb-4 flex-col gap-2 px-2 flex">
+      <aside className="w-56 lg:sticky absolute top-0 overflow-y-auto scrollbar-hidden pb-4 flex-col gap-2 px-2 lg:flex hidden">
         <LargeSidebarSection>
           <LargeSidebarItem isActive IconOrImageUrl={Home} title="Home" url="/" />
           <LargeSidebarItem IconOrImageUrl={Clapperboard} title="Subscriptions" url="/subscriptions" />
