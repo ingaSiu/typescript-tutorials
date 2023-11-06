@@ -30,7 +30,7 @@ import { twMerge } from 'tailwind-merge';
 import { useSidebarContext } from '../contexts/SidebarContext';
 
 const Sidebar = () => {
-  const { isLargeOpen, isSmallOpen } = useSidebarContext();
+  const { isLargeOpen, isSmallOpen, close } = useSidebarContext();
 
   return (
     <>
@@ -44,6 +44,9 @@ const Sidebar = () => {
         <SmallSidebarItem Icon={Clapperboard} title="Subscriptions" url="/subscriptions" />
         <SmallSidebarItem Icon={Library} title="Library" url="/library" />
       </aside>
+      {isSmallOpen && (
+        <div onClick={close} className="lg:hidden fixed inset-0 z-[999] bg-secondary-dark opacity-50"></div>
+      )}
       <aside
         className={`w-56 lg:sticky absolute top-0 overflow-y-auto scrollbar-hidden pb-4 flex-col gap-2 px-2 ${
           isLargeOpen ? 'lg:flex' : 'lg:hidden'
