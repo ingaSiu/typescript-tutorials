@@ -25,6 +25,7 @@ import {
 import { Children, ElementType, ReactNode, useState } from 'react';
 import { playlists, subscriptions } from '../data/sidebar';
 
+import { PageHeaderFirstSection } from './PageHeader';
 import { twMerge } from 'tailwind-merge';
 import { useSidebarContext } from '../contexts/SidebarContext';
 
@@ -48,6 +49,7 @@ const Sidebar = () => {
           isLargeOpen ? 'lg:flex' : 'lg:hidden'
         } ${isSmallOpen ? 'flex z-[999] bg-white max-h-screen ' : 'hidden'} `}
       >
+        <PageHeaderFirstSection />
         <LargeSidebarSection>
           <LargeSidebarItem isActive IconOrImageUrl={Home} title="Home" url="/" />
           <LargeSidebarItem IconOrImageUrl={Clapperboard} title="Subscriptions" url="/subscriptions" />
