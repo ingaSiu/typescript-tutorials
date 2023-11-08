@@ -5,6 +5,10 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import NewNote from './components/NewNote';
 import { useLocalStorage } from './hooks/useLocalStarage';
+import { useMemo } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+
+// uuid library allowa us to create a string based id which is always going to be unique
 
 export type Note = {
   id: string;
@@ -12,7 +16,8 @@ export type Note = {
 
 export type RawNote = {
   id: string;
-};
+} & RawNoteData;
+
 export type RawNoteData = {
   title: string;
   markdown: string;
@@ -32,6 +37,19 @@ export type Tag = {
 const App = () => {
   const [notes, setNotes] = useLocalStorage<RawNote[]>('NOTES', []);
   const [tags, setTags] = useLocalStorage<Tag[]>('TAGS', []);
+
+  const notesWithTags = useMemo(() => {
+    return notes.map((note) => {
+      return { ...notes, tags: tags.filter((tag) => note.tagIds.includes(tag.id)) };
+    });
+  }, [notes, tags]);
+
+  const onCreateNote = ({ tags, ...data }: NoteData) => {
+    setNotes((prevNotes) => {
+      return [...prevNotes, { ...data, id: uuidv4(), tagIds: tags.map((tag) => tag.id) }];
+    });
+  };
+
   return (
     <Container className="my-4">
       <Routes>
