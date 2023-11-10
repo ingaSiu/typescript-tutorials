@@ -4,6 +4,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { Container } from 'react-bootstrap';
 import NewNote from './components/NewNote';
+import NoteLayout from './components/NoteLayout';
 import NoteList from './components/NoteList';
 import { useLocalStorage } from './hooks/useLocalStarage';
 import { useMemo } from 'react';
@@ -41,7 +42,7 @@ const App = () => {
 
   const notesWithTags = useMemo(() => {
     return notes.map((note) => {
-      return { ...notes, tags: tags.filter((tag) => note.tagIds.includes(tag.id)) };
+      return { ...note, tags: tags.filter((tag) => note.tagIds.includes(tag.id)) };
     });
   }, [notes, tags]);
 
@@ -60,7 +61,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<NoteList notes={notesWithTags} availableTags={tags} />}></Route>
         <Route path="/new" element={<NewNote onSubmit={onCreateNote} onAddTag={addTag} availableTags={tags} />}></Route>
-        <Route path="/:id">
+        <Route path="/:id" element={<NoteLayout notes={notesWithTags} />}>
           <Route index element={<h1>Show</h1>} />
           <Route path="edit" element={<h1>Edit</h1>} />
         </Route>
