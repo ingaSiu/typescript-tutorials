@@ -27,7 +27,12 @@ const ImageSlider = ({ imageUrls }: ImageSliderProps) => {
 
   return (
     <div style={{ width: '100%', height: '100%', position: 'relative' }}>
-      <img src={imageUrls[imageIndex]} className="img-slider-img" />
+      <div className="image-container">
+        {imageUrls.map((url) => (
+          <img key={url} src={url} className="img-slider-img" style={{ translate: `${-100 * imageIndex}%` }} />
+        ))}
+      </div>
+
       <button onClick={showPrevImage} className="img-slider-btn" style={{ left: '0' }}>
         <ArrowBigLeft />
       </button>
