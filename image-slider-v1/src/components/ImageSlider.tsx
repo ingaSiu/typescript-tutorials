@@ -1,6 +1,6 @@
 import './ImageSlider.css';
 
-import { ArrowBigLeft, ArrowBigRight } from 'lucide-react';
+import { ArrowBigLeft, ArrowBigRight, Circle, CircleDot } from 'lucide-react';
 
 import { useState } from 'react';
 
@@ -39,9 +39,11 @@ const ImageSlider = ({ imageUrls }: ImageSliderProps) => {
       <button onClick={showNextImage} className="img-slider-btn" style={{ right: '0' }}>
         <ArrowBigRight />
       </button>
-      <div>
+      <div className="btn-wrapper">
         {imageUrls.map((_, index) => (
-          <button onClick={() => setImageIndex(index)}>{index}</button>
+          <button key={index} className="img-slider-dot-btn" onClick={() => setImageIndex(index)}>
+            {index === imageIndex ? <CircleDot /> : <Circle />}
+          </button>
         ))}
       </div>
     </div>
