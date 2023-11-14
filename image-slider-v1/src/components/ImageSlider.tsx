@@ -54,7 +54,7 @@ const ImageSlider = ({ images }: ImageSliderProps) => {
             key={index}
             className="img-slider-dot-btn"
             onClick={() => setImageIndex(index)}
-            aria-label={`View Image ${index}`}
+            aria-label={`View Image ${index + 1}`}
           >
             {index === imageIndex ? <CircleDot /> : <Circle />}
           </button>
