@@ -30,6 +30,9 @@ const ImageSlider = ({ images }: ImageSliderProps) => {
 
   return (
     <section aria-label="Image Slider" style={{ width: '100%', height: '100%', position: 'relative' }}>
+      <a href="#after-mage-slider-controls" className="skip-link">
+        Skip Image Slider Controls
+      </a>
       <div className="image-container">
         {images.map(({ url, alt }, index) => (
           <img
@@ -61,6 +64,7 @@ const ImageSlider = ({ images }: ImageSliderProps) => {
           </button>
         ))}
       </div>
+      <div id="after-mage-slider-controls"></div>
     </section>
   );
 };
