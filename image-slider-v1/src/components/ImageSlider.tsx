@@ -31,11 +31,12 @@ const ImageSlider = ({ images }: ImageSliderProps) => {
   return (
     <div style={{ width: '100%', height: '100%', position: 'relative' }}>
       <div className="image-container">
-        {images.map(({ url, alt }) => (
+        {images.map(({ url, alt }, index) => (
           <img
             key={url}
             src={url}
             alt={alt}
+            aria-hidden={imageIndex !== index}
             className="img-slider-img"
             style={{ translate: `${-100 * imageIndex}%` }}
           />
@@ -43,10 +44,10 @@ const ImageSlider = ({ images }: ImageSliderProps) => {
       </div>
 
       <button onClick={showPrevImage} className="img-slider-btn" style={{ left: '0' }} aria-label="View Previous Image">
-        <ArrowBigLeft />
+        <ArrowBigLeft aria-hidden />
       </button>
       <button onClick={showNextImage} className="img-slider-btn" style={{ right: '0' }} aria-label="View Next Image">
-        <ArrowBigRight />
+        <ArrowBigRight aria-hidden />
       </button>
       <div className="btn-wrapper">
         {images.map((_, index) => (
@@ -56,7 +57,7 @@ const ImageSlider = ({ images }: ImageSliderProps) => {
             onClick={() => setImageIndex(index)}
             aria-label={`View Image ${index + 1}`}
           >
-            {index === imageIndex ? <CircleDot /> : <Circle />}
+            {index === imageIndex ? <CircleDot aria-hidden /> : <Circle aria-hidden />}
           </button>
         ))}
       </div>
