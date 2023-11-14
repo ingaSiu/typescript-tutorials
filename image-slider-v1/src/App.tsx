@@ -5,12 +5,18 @@ import car3 from './imgs/car-3.jpg';
 import car4 from './imgs/car-4.jpg';
 import car5 from './imgs/car-5.jpg';
 
-const IMAGES = [car1, car2, car3, car4, car5];
+const IMAGES = [
+  { url: car1, alt: 'Car One' },
+  { url: car2, alt: 'Car Two' },
+  { url: car3, alt: 'Car Three' },
+  { url: car4, alt: 'Car Four' },
+  { url: car5, alt: 'Car Five' },
+];
 
 const App = () => {
   return (
     <div style={{ maxWidth: '1200px', width: '100%', aspectRatio: '10 / 6', margin: '0 auto' }}>
-      <ImageSlider imageUrls={IMAGES} />
+      <ImageSlider images={IMAGES} />
     </div>
   );
 };
