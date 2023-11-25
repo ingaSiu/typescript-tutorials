@@ -22,13 +22,22 @@ const CalculatorBase = styled(Paper)(({ theme }) => ({
 const App = () => {
   const [currentValue, setCurrentValue] = useState('0');
   const [operation, setOperation] = useState('');
+  const [prevValue, setPrevValue] = useState('');
+  const [overwrite, setOverwrite] = useState(true);
 
   const selectOperation = (operation: string) => {
     setOperation(operation);
   };
 
   const setDigit = (digit: string) => {
-    setCurrentValue(digit);
+    if (currentValue[0] === '0' && digit === '0') return;
+    if (currentValue.includes('.') && digit === '.') return;
+    if (overwrite && digit !== '.') {
+      setCurrentValue(digit);
+    } else {
+      setCurrentValue(`${currentValue} ${digit}`);
+    }
+    setOverwrite(false);
   };
 
   return (
