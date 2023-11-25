@@ -25,6 +25,13 @@ const App = () => {
   const [prevValue, setPrevValue] = useState('');
   const [overwrite, setOverwrite] = useState(true);
 
+  const clear = () => {
+    setPrevValue('');
+    setOperation('');
+    setCurrentValue('0');
+    setOverwrite(true);
+  };
+
   const selectOperation = (operation: string) => {
     setOperation(operation);
   };
@@ -48,7 +55,7 @@ const App = () => {
             <OutputContainer>{currentValue}</OutputContainer>
           </Grid>
           <Grid item container columnSpacing={1}>
-            <GridOperationButton operation={'AC'} selectOperation={selectOperation} selectedOperation={operation} />
+            <GridOperationButton operation={'AC'} selectOperation={clear} selectedOperation={operation} />
             <GridOperationButton operation={'C'} selectOperation={selectOperation} selectedOperation={operation} />
             <GridOperationButton operation={'%'} selectOperation={selectOperation} selectedOperation={operation} />
             <GridOperationButton operation={'÷'} selectOperation={selectOperation} selectedOperation={operation} />
