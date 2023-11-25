@@ -41,6 +41,11 @@ const App = () => {
     }
   };
 
+  const percent = () => {
+    const curr = parseFloat(currentValue);
+    setCurrentValue((curr / 100).toString());
+  };
+
   const selectOperation = (operation: string) => {
     setOperation(operation);
   };
@@ -66,7 +71,7 @@ const App = () => {
           <Grid item container columnSpacing={1}>
             <GridOperationButton operation={'AC'} selectOperation={clear} selectedOperation={operation} />
             <GridOperationButton operation={'C'} selectOperation={deleteNumber} selectedOperation={operation} />
-            <GridOperationButton operation={'%'} selectOperation={selectOperation} selectedOperation={operation} />
+            <GridOperationButton operation={'%'} selectOperation={percent} selectedOperation={operation} />
             <GridOperationButton operation={'÷'} selectOperation={selectOperation} selectedOperation={operation} />
           </Grid>
           <Grid item container columnSpacing={1}>
