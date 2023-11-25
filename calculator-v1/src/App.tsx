@@ -32,6 +32,15 @@ const App = () => {
     setOverwrite(true);
   };
 
+  const deleteNumber = () => {
+    if (currentValue.length === 1) {
+      setCurrentValue('0');
+      setOverwrite(true);
+    } else {
+      setCurrentValue(currentValue.slice(0, -1));
+    }
+  };
+
   const selectOperation = (operation: string) => {
     setOperation(operation);
   };
@@ -56,7 +65,7 @@ const App = () => {
           </Grid>
           <Grid item container columnSpacing={1}>
             <GridOperationButton operation={'AC'} selectOperation={clear} selectedOperation={operation} />
-            <GridOperationButton operation={'C'} selectOperation={selectOperation} selectedOperation={operation} />
+            <GridOperationButton operation={'C'} selectOperation={deleteNumber} selectedOperation={operation} />
             <GridOperationButton operation={'%'} selectOperation={selectOperation} selectedOperation={operation} />
             <GridOperationButton operation={'÷'} selectOperation={selectOperation} selectedOperation={operation} />
           </Grid>
