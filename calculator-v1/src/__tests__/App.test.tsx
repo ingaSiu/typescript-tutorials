@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import App from '../App';
 
@@ -35,5 +35,17 @@ describe('Calculator App tests', () => {
     expect(screen.getByRole('button', { name: '-' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: '.' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: '=' })).toBeInTheDocument();
+  });
+
+  test('Does addition correctly', () => {
+    render(<App />);
+
+    fireEvent.click(screen.getByRole('button', { name: '1' }));
+    fireEvent.click(screen.getByRole('button', { name: '0' }));
+    fireEvent.click(screen.getByRole('button', { name: '+' }));
+    fireEvent.click(screen.getByRole('button', { name: '5' }));
+    fireEvent.click(screen.getByRole('button', { name: '=' }));
+
+    expect(screen.getByTestId('output')).toHaveTextContent('15');
   });
 });
