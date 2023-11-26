@@ -60,4 +60,16 @@ describe('Calculator App tests', () => {
 
     expect(screen.getByTestId('output')).toHaveTextContent('5');
   });
+
+  test('Does multiply correctly', () => {
+    render(<App />);
+
+    fireEvent.click(screen.getByRole('button', { name: '1' }));
+    fireEvent.click(screen.getByRole('button', { name: '0' }));
+    fireEvent.click(screen.getByRole('button', { name: '*' }));
+    fireEvent.click(screen.getByRole('button', { name: '5' }));
+    fireEvent.click(screen.getByRole('button', { name: '=' }));
+
+    expect(screen.getByTestId('output')).toHaveTextContent('50');
+  });
 });
