@@ -98,7 +98,7 @@ const App = () => {
     if (overwrite && digit !== '.') {
       setCurrentValue(digit);
     } else {
-      setCurrentValue(`${currentValue} ${digit}`);
+      setCurrentValue(`${currentValue}${digit}`);
     }
     setOverwrite(false);
   };
