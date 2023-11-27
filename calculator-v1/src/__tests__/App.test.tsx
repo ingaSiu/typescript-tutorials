@@ -110,7 +110,31 @@ describe('Calculator App tests', () => {
 
     fireEvent.click(screen.getByRole('button', { name: 'AC' }));
 
-    expect(screen.getByTestId('output')).toHaveTextContent('0');
+    const output = screen.getByTestId('output');
+    expect(output).toHaveTextContent('0');
     expect(plusButton).not.toHaveStyle({ borderColor: '#fff' });
+  });
+
+  test('Does chain operations correctly', () => {
+    render(<App />);
+
+    const output = screen.getByTestId('output');
+
+    fireEvent.click(screen.getByRole('button', { name: '1' }));
+    fireEvent.click(screen.getByRole('button', { name: '0' }));
+    fireEvent.click(screen.getByRole('button', { name: '+' }));
+    fireEvent.click(screen.getByRole('button', { name: '5' }));
+
+    expect(output).toHaveTextContent('5');
+    fireEvent.click(screen.getByRole('button', { name: '+' }));
+
+    expect(output).toHaveTextContent('15');
+    fireEvent.click(screen.getByRole('button', { name: '1' }));
+    fireEvent.click(screen.getByRole('button', { name: '9' }));
+
+    expect(output).toHaveTextContent('19');
+    fireEvent.click(screen.getByRole('button', { name: '=' }));
+
+    expect(output).toHaveTextContent('34');
   });
 });
