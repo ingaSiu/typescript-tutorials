@@ -94,4 +94,14 @@ describe('Calculator App tests', () => {
 
     expect(screen.getByTestId('output')).toHaveTextContent('1');
   });
+
+  test('Does delete all numbers correctly', () => {
+    render(<App />);
+
+    fireEvent.click(screen.getByRole('button', { name: '1' }));
+    fireEvent.click(screen.getByRole('button', { name: '0' }));
+    fireEvent.click(screen.getByRole('button', { name: 'AC' }));
+
+    expect(screen.getByTestId('output')).toHaveTextContent('0');
+  });
 });
