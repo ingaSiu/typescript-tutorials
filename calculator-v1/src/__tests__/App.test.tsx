@@ -95,13 +95,22 @@ describe('Calculator App tests', () => {
     expect(screen.getByTestId('output')).toHaveTextContent('1');
   });
 
-  test('Does delete all numbers correctly', () => {
+  test('Does clear all operation correctly', () => {
     render(<App />);
+
+    const plusButton = screen.getByRole('button', { name: '+' });
 
     fireEvent.click(screen.getByRole('button', { name: '1' }));
     fireEvent.click(screen.getByRole('button', { name: '0' }));
+
+    fireEvent.click(plusButton);
+    fireEvent.click(screen.getByRole('button', { name: '3' }));
+
+    expect(plusButton).toHaveStyle({ borderColor: '#fff' });
+
     fireEvent.click(screen.getByRole('button', { name: 'AC' }));
 
     expect(screen.getByTestId('output')).toHaveTextContent('0');
+    expect(plusButton).not.toHaveStyle({ borderColor: '#fff' });
   });
 });
