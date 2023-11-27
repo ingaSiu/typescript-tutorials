@@ -14,9 +14,11 @@ test('Renders the main page', () => {
 });
 
 describe('Calculator App tests', () => {
-  test('Renders calculator', () => {
+  beforeEach(() => {
     render(<App />);
+  });
 
+  test('Renders calculator', () => {
     const output = screen.getByTestId('output');
     expect(output).toHaveTextContent('0');
 
@@ -38,8 +40,6 @@ describe('Calculator App tests', () => {
   });
 
   test('Does addition correctly', () => {
-    render(<App />);
-
     fireEvent.click(screen.getByRole('button', { name: '1' }));
     fireEvent.click(screen.getByRole('button', { name: '0' }));
     fireEvent.click(screen.getByRole('button', { name: '+' }));
@@ -50,8 +50,6 @@ describe('Calculator App tests', () => {
   });
 
   test('Does subtraction correctly', () => {
-    render(<App />);
-
     fireEvent.click(screen.getByRole('button', { name: '1' }));
     fireEvent.click(screen.getByRole('button', { name: '0' }));
     fireEvent.click(screen.getByRole('button', { name: '-' }));
@@ -62,8 +60,6 @@ describe('Calculator App tests', () => {
   });
 
   test('Does multiply correctly', () => {
-    render(<App />);
-
     fireEvent.click(screen.getByRole('button', { name: '1' }));
     fireEvent.click(screen.getByRole('button', { name: '0' }));
     fireEvent.click(screen.getByRole('button', { name: '*' }));
@@ -74,8 +70,6 @@ describe('Calculator App tests', () => {
   });
 
   test('Does divide correctly', () => {
-    render(<App />);
-
     fireEvent.click(screen.getByRole('button', { name: '1' }));
     fireEvent.click(screen.getByRole('button', { name: '0' }));
     fireEvent.click(screen.getByRole('button', { name: '÷' }));
@@ -86,8 +80,6 @@ describe('Calculator App tests', () => {
   });
 
   test('Does delete the last number correctly', () => {
-    render(<App />);
-
     fireEvent.click(screen.getByRole('button', { name: '1' }));
     fireEvent.click(screen.getByRole('button', { name: '0' }));
     fireEvent.click(screen.getByRole('button', { name: 'C' }));
@@ -96,8 +88,6 @@ describe('Calculator App tests', () => {
   });
 
   test('Does clear all operation correctly', () => {
-    render(<App />);
-
     const plusButton = screen.getByRole('button', { name: '+' });
 
     fireEvent.click(screen.getByRole('button', { name: '1' }));
@@ -116,8 +106,6 @@ describe('Calculator App tests', () => {
   });
 
   test('Does chain operations correctly', () => {
-    render(<App />);
-
     const output = screen.getByTestId('output');
 
     fireEvent.click(screen.getByRole('button', { name: '1' }));
