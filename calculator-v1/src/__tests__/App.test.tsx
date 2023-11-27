@@ -84,4 +84,14 @@ describe('Calculator App tests', () => {
 
     expect(screen.getByTestId('output')).toHaveTextContent('2');
   });
+
+  test('Does delete the last number correctly', () => {
+    render(<App />);
+
+    fireEvent.click(screen.getByRole('button', { name: '1' }));
+    fireEvent.click(screen.getByRole('button', { name: '0' }));
+    fireEvent.click(screen.getByRole('button', { name: 'C' }));
+
+    expect(screen.getByTestId('output')).toHaveTextContent('1');
+  });
 });
